@@ -17,7 +17,7 @@
   "require": {
     "illuminate/support": "~7|~8",
     "geoip2/geoip2": "^2.11",
-    "haakco/postgreshelper": "@dev",
+    "haakco/postgres-helper": "@dev",
     "torann/geoip": "^3.0"
   },
   "require-dev": {
