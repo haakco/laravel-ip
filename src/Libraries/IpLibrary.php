@@ -4,9 +4,9 @@
 
 /** @noinspection PhpUnused */
 
-namespace App\Libraries\Helper;
+namespace HaakCo\Ip\Libraries;
 
-use App\Models\Ip;
+use HaakCo\Ip\Models\Ip;
 use Cache;
 use DB;
 use Exception;

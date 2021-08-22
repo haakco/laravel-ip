@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace HaakCo\Ip\Models;
 
 
 
@@ -16,11 +16,11 @@ namespace App\Models;
  * @property \Carbon\Carbon $updated_at
  * @property int $family
  * @property string $name
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Ip[] $ips_ip_type
+ * @property \Illuminate\Database\Eloquent\Collection|\HaakCo\Ip\Models\Ip[] $ips_ip_type
  * @package App\Models
  * @mixin IdeHelperIpType
  */
-class IpType extends \App\Models\BaseModels\BaseModel
+class IpType extends \HaakCo\PostgresHelper\Models\BaseModels
 {
     protected $table = 'public.ip_types';
     public $incrementing = false;
@@ -38,6 +38,6 @@ class IpType extends \App\Models\BaseModels\BaseModel
 
     public function ips_ip_type()
     {
-        return $this->hasMany(\App\Models\Ip::class, 'ip_type_id');
+        return $this->hasMany(\HaakCo\Ip\Models\Ip::class, 'ip_type_id');
     }
 }

@@ -23,7 +23,10 @@
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "phpunit/phpunit": "~9.0",
-    "orchestra/testbench": "~5|~6"
+    "orchestra/testbench": "~5|~6",
+    "brainmaestro/composer-git-hooks": "^2.8",
+    "doctrine/dbal": "^2.13.2",
+    "squizlabs/php_codesniffer": "^3.6"
   },
   "autoload": {
     "psr-4": {
@@ -43,6 +46,12 @@
       "aliases": {
         "Ip": "HaakCo\\Ip\\Facades\\Ip"
       }
+    }
+  },
+  "repositories": {
+    "haakco/laravel-postgres-helper": {
+      "type": "vcs",
+      "url": "git@github.com:haakco/laravel-postgres-helper.git"
     }
   }
 }

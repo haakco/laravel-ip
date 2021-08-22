@@ -1,6 +1,6 @@
 <?php
 
-use App\Libraries\Helper\PgHelperLibrary;
+use HaakCo\Ip\Libraries\Helper\PgHelperLibrary;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
