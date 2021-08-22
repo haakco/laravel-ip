@@ -6,23 +6,24 @@
 
 namespace HaakCo\Ip\Models;
 
-
+use Carbon\Carbon;
+use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class IpType
  *
  * @property int $id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int $family
  * @property string $name
- * @property \Illuminate\Database\Eloquent\Collection|\HaakCo\Ip\Models\Ip[] $ips_ip_type
- * @package App\Models
- * @mixin IdeHelperIpType
+ * @property Collection|Ip[] $ips_ip_type
+ * @package HaakCo\Ip\Models
  */
-class IpType extends \HaakCo\PostgresHelper\Models\BaseModels
+class IpType extends BaseModel
 {
-    protected $table = 'public.ip_types';
+    protected $table = 'ip_types';
     public $incrementing = false;
 
     protected $casts = [
@@ -38,6 +39,6 @@ class IpType extends \HaakCo\PostgresHelper\Models\BaseModels
 
     public function ips_ip_type()
     {
-        return $this->hasMany(\HaakCo\Ip\Models\Ip::class, 'ip_type_id');
+        return $this->hasMany(Ip::class, 'ip_type_id');
     }
 }
