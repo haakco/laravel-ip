@@ -1,0 +1,48 @@
+{
+  "name": "haakco/ip",
+  "description": ":package_description",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Tim Haak",
+      "email": "tim@haak.co",
+      "homepage": "https://haak.co"
+    }
+  ],
+  "homepage": "https://github.com/haakco/ip",
+  "keywords": [
+    "Laravel",
+    "Ip"
+  ],
+  "require": {
+    "illuminate/support": "~7|~8",
+    "geoip2/geoip2": "^2.11",
+    "haakco/postgreshelper": "@dev",
+    "torann/geoip": "^3.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "~9.0",
+    "orchestra/testbench": "~5|~6"
+  },
+  "autoload": {
+    "psr-4": {
+      "HaakCo\\Ip\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "HaakCo\\Ip\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "HaakCo\\Ip\\IpServiceProvider"
+      ],
+      "aliases": {
+        "Ip": "HaakCo\\Ip\\Facades\\Ip"
+      }
+    }
+  }
+}
