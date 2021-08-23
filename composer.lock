@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a743b66e8d3c9f60150bf1ed13e302c5",
+    "content-hash": "2b8028873a7625e4aa8169485ee43830",
     "packages": [
         {
             "name": "brick/math",
@@ -645,17 +645,17 @@
             "time": "2020-04-13T13:17:36+00:00"
         },
         {
-            "name": "haakco/postgres-helper",
+            "name": "haakco/laravel-postgres-helper",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@github.com:haakco/laravel-postgres-helper.git",
-                "reference": "5b4b7ae6abb13f5c8ef0f5b4a5b80b759e0eea4e"
+                "reference": "9a09395c87d0e6f3f24ad5a48eb3931f37ee4429"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/haakco/laravel-postgres-helper/zipball/5b4b7ae6abb13f5c8ef0f5b4a5b80b759e0eea4e",
-                "reference": "5b4b7ae6abb13f5c8ef0f5b4a5b80b759e0eea4e",
+                "url": "https://api.github.com/repos/haakco/laravel-postgres-helper/zipball/9a09395c87d0e6f3f24ad5a48eb3931f37ee4429",
+                "reference": "9a09395c87d0e6f3f24ad5a48eb3931f37ee4429",
                 "shasum": ""
             },
             "require": {
@@ -702,7 +702,7 @@
                 }
             ],
             "description": ":package_description",
-            "homepage": "https://github.com/haakco/postgres-helper",
+            "homepage": "https://github.com/haakco/laravel-postgres-helper",
             "keywords": [
                 "Laravel",
                 "PostgresHelper"
@@ -711,7 +711,7 @@
                 "source": "https://github.com/haakco/laravel-postgres-helper/tree/master",
                 "issues": "https://github.com/haakco/laravel-postgres-helper/issues"
             },
-            "time": "2021-08-22T20:51:40+00:00"
+            "time": "2021-08-23T21:58:40+00:00"
         },
         {
             "name": "laravel/framework",
@@ -6797,12 +6797,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd"
+                "reference": "cd0a994884c7323cdc591f02b6027e00c1d88e74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd",
-                "reference": "3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/cd0a994884c7323cdc591f02b6027e00c1d88e74",
+                "reference": "cd0a994884c7323cdc591f02b6027e00c1d88e74",
                 "shasum": ""
             },
             "conflict": {
@@ -6980,7 +6980,7 @@
                 "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
-                "pimcore/pimcore": "<10.0.7",
+                "pimcore/pimcore": "<10.1.1",
                 "pocketmine/pocketmine-mp": "<3.15.4",
                 "pressbooks/pressbooks": "<5.18",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
@@ -7003,8 +7003,8 @@
                 "scheb/two-factor-bundle": ">=0,<3.26|>=4,<4.11",
                 "sensiolabs/connect": "<4.2.3",
                 "serluck/phpwhois": "<=4.2.6",
-                "shopware/core": "<=6.4.1",
-                "shopware/platform": "<=6.4.1",
+                "shopware/core": "<=6.4.3",
+                "shopware/platform": "<=6.4.3",
                 "shopware/production": "<=6.3.5.2",
                 "shopware/shopware": "<=5.6.9",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
@@ -7172,7 +7172,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-19T16:07:21+00:00"
+            "time": "2021-08-23T20:03:09+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -8853,7 +8853,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "haakco/postgres-helper": 20,
+        "haakco/laravel-postgres-helper": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
