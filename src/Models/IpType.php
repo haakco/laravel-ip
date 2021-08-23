@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace HaakCo\Ip\Models;
 
 use Carbon\Carbon;
@@ -23,9 +19,8 @@ use Illuminate\Database\Eloquent\Collection;
  */
 class IpType extends BaseModel
 {
-    protected $table = 'ip_types';
     public $incrementing = false;
-
+    protected $table = 'ip_types';
     protected $casts = [
         'id' => 'int',
         'family' => 'int'

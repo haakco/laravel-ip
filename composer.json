@@ -1,6 +1,6 @@
 {
-  "name": "haakco/ip",
-  "description": ":package_description",
+  "name": "haakco/laravel-ip",
+  "description": "Function to check and manage ip's. Also adds tables for storing.",
   "license": "proprietary",
   "authors": [
     {
@@ -9,7 +9,7 @@
       "homepage": "https://haak.co"
     }
   ],
-  "homepage": "https://github.com/haakco/ip",
+  "homepage": "https://github.com/haakco/laravel-ip",
   "keywords": [
     "Laravel",
     "Ip"

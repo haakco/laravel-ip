@@ -1,12 +1,12 @@
 <?php
 
-use HaakCo\Ip\Libraries\Helper\PgHelperLibrary;
+use HaakCo\PostgresHelper\Libraries\PgHelperLibrary;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIpsTable extends Migration
+class HaakcoLaravelIpCreateIpsTable extends Migration
 {
     /**
      * Run the migrations.

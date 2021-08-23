@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace HaakCo\Ip\Models;
-
 
 use Carbon\Carbon;
 use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
