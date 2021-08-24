@@ -1,20 +1,24 @@
 <?php
 
-namespace HaakCo\Ip\Models;
+/**
+ * Created by Reliese Model.
+ */
 
-use Carbon\Carbon;
-use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
+namespace App\Models;
+
+
 
 /**
  * Class MacAddress
  *
  * @property int $id
- * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property string $name
- * @package HaakCo\Ip\Models
+ * @package App\Models
+ * @mixin IdeHelperMacAddress
  */
-class MacAddress extends BaseModel
+class MacAddress extends \HaakCo\PostgresHelper\Models\BaseModels\BaseModel
 {
     protected $table = 'mac_addresses';
 

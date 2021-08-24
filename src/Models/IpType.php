@@ -1,26 +1,30 @@
 <?php
 
-namespace HaakCo\Ip\Models;
+/**
+ * Created by Reliese Model.
+ */
 
-use Carbon\Carbon;
-use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
-use Illuminate\Database\Eloquent\Collection;
+namespace App\Models;
+
+
 
 /**
  * Class IpType
  *
  * @property int $id
- * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property int $family
  * @property string $name
- * @property Collection|Ip[] $ips_ip_type
- * @package HaakCo\Ip\Models
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Ip[] $ips_ip_type
+ * @package App\Models
+ * @mixin IdeHelperIpType
  */
-class IpType extends BaseModel
+class IpType extends \HaakCo\PostgresHelper\Models\BaseModels\BaseModel
 {
-    public $incrementing = false;
     protected $table = 'ip_types';
+    public $incrementing = false;
+
     protected $casts = [
         'id' => 'int',
         'family' => 'int'
@@ -34,6 +38,6 @@ class IpType extends BaseModel
 
     public function ips_ip_type()
     {
-        return $this->hasMany(Ip::class, 'ip_type_id');
+        return $this->hasMany(\App\Models\Ip::class, 'ip_type_id');
     }
 }

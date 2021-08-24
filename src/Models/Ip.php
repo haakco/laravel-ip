@@ -1,9 +1,10 @@
 <?php
 
-namespace HaakCo\Ip\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Ip
@@ -16,7 +17,15 @@ use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
  * @property string $name
  * @property int $netmask
  * @property IpType $ip_type
- * @package HaakCo\Ip\Models
+ * @property Collection|MonitorNaughtyIp[] $monitor_naughty_ips_ip
+ * @property Collection|Monitor[] $monitors
+ * @property Collection|MonitorIp[] $monitor_ips_ip
+ * @property Collection|Domain[] $domains
+ * @property Collection|DomainIp[] $domain_ips_ip
+ * @property Collection|MonitorResultPing[] $monitor_result_pings_ip
+ * @property Collection|DomainIpsHistory[] $domain_ips_histories_ip
+ * @package App\Models
+ * @mixin IdeHelperIp
  */
 class Ip extends BaseModel
 {
@@ -39,5 +48,43 @@ class Ip extends BaseModel
     public function ip_type()
     {
         return $this->belongsTo(IpType::class, 'ip_type_id');
+    }
+
+    public function monitor_naughty_ips_ip()
+    {
+        return $this->hasMany(MonitorNaughtyIp::class, 'ip_id');
+    }
+
+    public function monitors()
+    {
+        return $this->belongsToMany(Monitor::class, 'monitor_ips', 'ip_id')
+            ->withPivot('id', 'company_id')
+            ->withTimestamps();
+    }
+
+    public function monitor_ips_ip()
+    {
+        return $this->hasMany(MonitorIp::class, 'ip_id');
+    }
+
+    public function domains()
+    {
+        return $this->belongsToMany(Domain::class, 'domain_ips_history', 'ip_id')
+            ->withPivot('id', 'added_at', 'removed_at');
+    }
+
+    public function domain_ips_ip()
+    {
+        return $this->hasMany(DomainIp::class, 'ip_id');
+    }
+
+    public function monitor_result_pings_ip()
+    {
+        return $this->hasMany(MonitorResultPing::class, 'ip_id');
+    }
+
+    public function domain_ips_histories_ip()
+    {
+        return $this->hasMany(DomainIpsHistory::class, 'ip_id');
     }
 }
