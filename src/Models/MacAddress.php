@@ -1,10 +1,8 @@
 <?php
 
-declare(strict_types=1);
+/** @noinspection PhpMissingFieldTypeInspection */
 
-/**
- * Created by Reliese Model.
- */
+declare(strict_types=1);
 
 namespace HaakCo\Ip\Models;
 
@@ -23,11 +21,11 @@ use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
  */
 class MacAddress extends BaseModel
 {
-    protected string $table = 'mac_addresses';
+    protected $table = 'mac_addresses';
 
-    protected array $casts = [
+    protected $casts = [
         'name' => 'macaddr',
     ];
 
-    protected array $fillable = ['name'];
+    protected $fillable = ['name'];
 }

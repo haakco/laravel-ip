@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingFieldTypeInspection */
+
 declare(strict_types=1);
 
 namespace HaakCo\Ip\Models;
@@ -19,19 +21,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $is_public
  * @property string $name
  * @property int $netmask
- * @property IpType $ip_type
+ * @property IpType $ipType
  * @mixin Eloquent
  */
 class Ip extends BaseModel
 {
-    protected array $casts = [
+    protected $casts = [
         'ip_type_id' => 'int',
         'is_public' => 'boolean',
         'name' => 'string',
         'netmask' => 'int',
     ];
 
-    protected array $fillable = ['ip_type_id', 'is_public', 'name', 'netmask'];
+    protected $fillable = ['ip_type_id', 'is_public', 'name', 'netmask'];
 
     public function getTable()
     {

@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingFieldTypeInspection */
+
 declare(strict_types=1);
 
 namespace HaakCo\Ip\Models;
@@ -18,20 +20,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $updated_at
  * @property int $family
  * @property string $name
- * @property Collection|Ip[] $ips_ip_type
+ * @property Collection|Ip[] $ips
  * @mixin Eloquent
  */
 class IpType extends BaseModel
 {
     public $incrementing = false;
-    protected string $table = 'ip_types';
+    protected $table = 'ip_types';
 
-    protected array $casts = [
+    protected $casts = [
         'id' => 'int',
         'family' => 'int',
     ];
 
-    protected array $fillable = ['id', 'family', 'name'];
+    protected $fillable = ['id', 'family', 'name'];
 
     /**
      * @return HasMany|Ip[]
