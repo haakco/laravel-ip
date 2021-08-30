@@ -16,7 +16,7 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
     public function up()
     {
         Schema::create(
-            'ip_types',
+            config('ip.tables.ip_types'),
             function (Blueprint $table) {
                 $table->unsignedBigInteger('id')
                     ->primary();
@@ -40,7 +40,7 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
         );
 
         Schema::create(
-            'ips',
+            config('ip.tables.ips'),
             function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestampTz('created_at')
@@ -64,7 +64,7 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
         );
 
         Schema::create(
-            'mac_addresses',
+            config('ip.tables.mac_addresses'),
             function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->timestampTz('created_at')

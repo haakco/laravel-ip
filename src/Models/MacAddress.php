@@ -1,32 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace HaakCo\Ip\Models;
 
-
+use Carbon\Carbon;
+use Eloquent;
+use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
 
 /**
- * Class MacAddress
+ * Class MacAddress.
  *
  * @property int $id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property string $name
- * @package App\Models
- * @mixin IdeHelperMacAddress
+ * @mixin Eloquent
  */
-class MacAddress extends \HaakCo\PostgresHelper\Models\BaseModels\BaseModel
+class MacAddress extends BaseModel
 {
-    protected $table = 'mac_addresses';
+    protected string $table = 'mac_addresses';
 
-    protected $casts = [
-        'name' => 'macaddr'
+    protected array $casts = [
+        'name' => 'macaddr',
     ];
 
-    protected $fillable = [
-        'name'
-    ];
+    protected array $fillable = ['name'];
 }

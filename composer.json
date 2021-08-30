@@ -1,6 +1,11 @@
 {
   "name": "haakco/laravel-ip",
   "description": "Function to check and manage ip's. Also adds tables for storing.",
+  "keywords": [
+    "Laravel",
+    "Ip"
+  ],
+  "homepage": "https://github.com/haakco/laravel-ip",
   "license": "proprietary",
   "authors": [
     {
@@ -9,24 +14,35 @@
       "homepage": "https://haak.co"
     }
   ],
-  "homepage": "https://github.com/haakco/laravel-ip",
-  "keywords": [
-    "Laravel",
-    "Ip"
-  ],
   "require": {
-    "illuminate/support": "~7|~8",
     "geoip2/geoip2": "^2.11",
     "haakco/laravel-postgres-helper": "@dev",
+    "illuminate/support": "~7 || ~8",
     "torann/geoip": "^3.0"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "phpunit/phpunit": "~9.0",
-    "orchestra/testbench": "~5|~6",
     "brainmaestro/composer-git-hooks": "^2.8",
     "doctrine/dbal": "^2.13.2",
-    "squizlabs/php_codesniffer": "^3.6"
+    "ergebnis/composer-normalize": "^2.15",
+    "orchestra/testbench": "~5 || ~6",
+    "phpstan/phpstan": "^0.12.96",
+    "phpstan/phpstan-phpunit": "^0.12.22",
+    "phpunit/phpunit": "~9.0",
+    "psalm/plugin-laravel": "^1.5",
+    "roave/security-advisories": "dev-latest",
+    "symplify/easy-coding-standard": "^9.4",
+    "symplify/phpstan-extensions": "^9.4",
+    "vimeo/psalm": "^4.9"
+  },
+  "extra": {
+    "laravel": {
+      "aliases": {
+        "Ip": "HaakCo\\Ip\\Facades\\Ip"
+      },
+      "providers": [
+        "HaakCo\\Ip\\IpServiceProvider"
+      ]
+    }
   },
   "autoload": {
     "psr-4": {
@@ -38,20 +54,36 @@
       "HaakCo\\Ip\\Tests\\": "tests"
     }
   },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "HaakCo\\Ip\\IpServiceProvider"
-      ],
-      "aliases": {
-        "Ip": "HaakCo\\Ip\\Facades\\Ip"
-      }
-    }
-  },
   "repositories": {
     "haakco/laravel-postgres-helper": {
       "type": "vcs",
       "url": "git@github.com:haakco/laravel-postgres-helper.git"
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "vendor/bin/cghooks add --ignore-lock"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "vendor/bin/cghooks update",
+      "composer normalize"
+    ],
+    "cghooks": "vendor/bin/cghooks",
+    "phpcs": [
+      "@php vendor/bin/ecs check --no-interaction",
+      "@php vendor/bin/ecs check --fix --no-interaction"
+    ],
+    "phpcs-check": [
+      "@php vendor/bin/ecs check --no-interaction"
+    ],
+    "phpcs-no-cache": [
+      "@php vendor/bin/ecs check --clear-cache --no-interaction",
+      "@php vendor/bin/ecs check --no-interaction",
+      "@php vendor/bin/ecs check --fix --no-interaction"
+    ],
+    "phpstan": "@php vendor/bin/phpstan analyse --no-interaction --memory-limit 1G",
+    "psalm": "@php vendor/bin/psalm --show-info=false"
   }
 }

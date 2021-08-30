@@ -1,43 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
+namespace HaakCo\Ip\Models;
+
+use Carbon\Carbon;
+use Eloquent;
+use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
- * Created by Reliese Model.
- */
-
-namespace App\Models;
-
-
-
-/**
- * Class IpType
+ * Class IpType.
  *
  * @property int $id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int $family
  * @property string $name
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Ip[] $ips_ip_type
- * @package App\Models
- * @mixin IdeHelperIpType
+ * @property Collection|Ip[] $ips_ip_type
+ * @mixin Eloquent
  */
-class IpType extends \HaakCo\PostgresHelper\Models\BaseModels\BaseModel
+class IpType extends BaseModel
 {
-    protected $table = 'ip_types';
     public $incrementing = false;
+    protected string $table = 'ip_types';
 
-    protected $casts = [
+    protected array $casts = [
         'id' => 'int',
-        'family' => 'int'
+        'family' => 'int',
     ];
 
-    protected $fillable = [
-        'id',
-        'family',
-        'name'
-    ];
+    protected array $fillable = ['id', 'family', 'name'];
 
-    public function ips_ip_type()
+    /**
+     * @return HasMany|Ip[]
+     */
+    public function ips(): HasMany|array
     {
-        return $this->hasMany(\App\Models\Ip::class, 'ip_type_id');
+        return $this->hasMany(Ip::class, 'ip_type_id');
     }
 }

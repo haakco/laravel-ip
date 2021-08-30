@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HaakCo\Ip;
 
 use Illuminate\Support\ServiceProvider;
@@ -8,8 +10,6 @@ class IpServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -26,8 +26,6 @@ class IpServiceProvider extends ServiceProvider
 
     /**
      * Console-specific booting.
-     *
-     * @return void
      */
     protected function bootForConsole(): void
     {
@@ -37,9 +35,8 @@ class IpServiceProvider extends ServiceProvider
         ], 'ip.config');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], 'ip.migrations');
-
 
         // Publishing the views.
         /*$this->publishes([
@@ -62,8 +59,6 @@ class IpServiceProvider extends ServiceProvider
 
     /**
      * Register any package services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -80,7 +75,7 @@ class IpServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['ip'];
     }
