@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Ip extends BaseModel
 {
+    protected $table = 'ips';
     protected $casts = [
         'ip_type_id' => 'int',
         'is_public' => 'boolean',
