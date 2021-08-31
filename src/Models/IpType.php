@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class IpType extends BaseModel
 {
     public $incrementing = false;
-    protected $table = 'ip_types';
 
     protected $casts = [
         'id' => 'int',
@@ -34,6 +33,11 @@ class IpType extends BaseModel
     ];
 
     protected $fillable = ['id', 'family', 'name'];
+
+    public function getTable()
+    {
+        return config('ip.tables.ip_types', parent::getTable());
+    }
 
     /**
      * @return HasMany|Ip[]

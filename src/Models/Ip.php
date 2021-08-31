@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Ip extends BaseModel
 {
-    protected $table = 'ips';
     protected $casts = [
         'ip_type_id' => 'int',
         'is_public' => 'boolean',
@@ -38,7 +37,7 @@ class Ip extends BaseModel
 
     public function getTable()
     {
-        return config('ip.tables.ip_types', parent::getTable());
+        return config('ip.tables.ips', parent::getTable());
     }
 
     public function ipType(): BelongsTo|IpType

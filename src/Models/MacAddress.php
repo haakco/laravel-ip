@@ -21,11 +21,13 @@ use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
  */
 class MacAddress extends BaseModel
 {
-    protected $table = 'mac_addresses';
-
     protected $casts = [
         'name' => 'macaddr',
     ];
-
     protected $fillable = ['name'];
+
+    public function getTable()
+    {
+        return config('ip.tables.mac_addresses', parent::getTable());
+    }
 }
