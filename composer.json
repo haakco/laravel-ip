@@ -15,19 +15,18 @@
   ],
   "homepage": "https://github.com/haakco/laravel-ip",
   "require": {
-    "geoip2/geoip2": ">=2.11",
+    "geoip2/geoip2": ">=v2.12",
     "haakco/laravel-postgres-helper": "@dev",
     "illuminate/support": "~7 || ~8 || ~9 || ~10",
     "torann/geoip": ">=3.0"
   },
   "require-dev": {
-    "brainmaestro/composer-git-hooks": ">=2.8",
-    "doctrine/dbal": ">=2.13",
+    "doctrine/dbal": ">=3.3",
     "ergebnis/composer-normalize": ">=2.15",
     "orchestra/testbench": "~5 || ~6 || ~7 || ~8 || ~9 || ~10",
     "phpunit/phpunit": ">=9.5",
     "roave/security-advisories": "dev-latest",
-    "symplify/easy-coding-standard": ">=9.4"
+    "symplify/easy-coding-standard": ">=10.2"
   },
   "repositories": {
     "haakco/laravel-postgres-helper": {
@@ -62,15 +61,12 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postInstall",
-      "vendor/bin/cghooks add --ignore-lock"
+      "Illuminate\\Foundation\\ComposerScripts::postInstall"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "vendor/bin/cghooks update",
       "composer normalize"
     ],
-    "cghooks": "vendor/bin/cghooks",
     "phpcs": [
       "@php vendor/bin/ecs check --no-interaction",
       "@php vendor/bin/ecs check --fix --no-interaction"
