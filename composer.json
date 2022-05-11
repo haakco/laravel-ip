@@ -1,12 +1,11 @@
 {
   "name": "haakco/laravel-ip",
   "description": "Function to check and manage ip's. Also adds tables for storing.",
+  "license": "proprietary",
   "keywords": [
     "Laravel",
     "Ip"
   ],
-  "homepage": "https://github.com/haakco/laravel-ip",
-  "license": "proprietary",
   "authors": [
     {
       "name": "Tim Haak",
@@ -14,34 +13,26 @@
       "homepage": "https://haak.co"
     }
   ],
+  "homepage": "https://github.com/haakco/laravel-ip",
   "require": {
-    "geoip2/geoip2": "^2.11",
+    "geoip2/geoip2": ">=2.11",
     "haakco/laravel-postgres-helper": "@dev",
-    "illuminate/support": "~7 || ~8",
-    "torann/geoip": "^3.0"
+    "illuminate/support": "~7 || ~8 || ~9 || ~10",
+    "torann/geoip": ">=3.0"
   },
   "require-dev": {
-    "brainmaestro/composer-git-hooks": "^2.8",
-    "doctrine/dbal": "^2.13.2",
-    "ergebnis/composer-normalize": "^2.15",
-    "orchestra/testbench": "~5 || ~6",
-    "phpstan/phpstan": "^0.12.96",
-    "phpstan/phpstan-phpunit": "^0.12.22",
-    "phpunit/phpunit": "~9.0",
-    "psalm/plugin-laravel": "^1.5",
+    "brainmaestro/composer-git-hooks": ">=2.8",
+    "doctrine/dbal": ">=2.13",
+    "ergebnis/composer-normalize": ">=2.15",
+    "orchestra/testbench": "~5 || ~6 || ~7 || ~8 || ~9 || ~10",
+    "phpunit/phpunit": ">=9.5",
     "roave/security-advisories": "dev-latest",
-    "symplify/easy-coding-standard": "^9.4",
-    "symplify/phpstan-extensions": "^9.4",
-    "vimeo/psalm": "^4.9"
+    "symplify/easy-coding-standard": ">=9.4"
   },
-  "extra": {
-    "laravel": {
-      "aliases": {
-        "Ip": "HaakCo\\Ip\\Facades\\Ip"
-      },
-      "providers": [
-        "HaakCo\\Ip\\IpServiceProvider"
-      ]
+  "repositories": {
+    "haakco/laravel-postgres-helper": {
+      "type": "vcs",
+      "url": "git@github.com:haakco/laravel-postgres-helper.git"
     }
   },
   "autoload": {
@@ -54,10 +45,19 @@
       "HaakCo\\Ip\\Tests\\": "tests"
     }
   },
-  "repositories": {
-    "haakco/laravel-postgres-helper": {
-      "type": "vcs",
-      "url": "git@github.com:haakco/laravel-postgres-helper.git"
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "aliases": {
+        "Ip": "HaakCo\\Ip\\Facades\\Ip"
+      },
+      "providers": [
+        "HaakCo\\Ip\\IpServiceProvider"
+      ]
     }
   },
   "scripts": {
@@ -82,8 +82,6 @@
       "@php vendor/bin/ecs check --clear-cache --no-interaction",
       "@php vendor/bin/ecs check --no-interaction",
       "@php vendor/bin/ecs check --fix --no-interaction"
-    ],
-    "phpstan": "@php vendor/bin/phpstan analyse --no-interaction --memory-limit 1G",
-    "psalm": "@php vendor/bin/psalm --show-info=false"
+    ]
   }
 }
