@@ -17,13 +17,13 @@
   "require": {
     "geoip2/geoip2": ">=v2.12",
     "haakco/laravel-postgres-helper": "@dev",
-    "illuminate/support": "~7 || ~8 || ~9 || ~10",
+    "illuminate/support": "~7 || ~8 || ~9 || ~10 || ~11 || ~12",
     "torann/geoip": ">=3.0"
   },
   "require-dev": {
     "doctrine/dbal": ">=3.3",
     "ergebnis/composer-normalize": ">=2.15",
-    "orchestra/testbench": "~5 || ~6 || ~7 || ~8 || ~9 || ~10",
+    "orchestra/testbench": "~5 || ~6 || ~7 || ~8 || ~9 || ~10 || ~11 || ~12",
     "phpunit/phpunit": ">=9.5",
     "roave/security-advisories": "dev-latest",
     "symplify/easy-coding-standard": ">=10.2"
