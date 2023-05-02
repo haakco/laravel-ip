@@ -1,7 +1,7 @@
 {
   "name": "haakco/laravel-ip",
   "description": "Function to check and manage ip's. Also adds tables for storing.",
-  "license": "proprietary",
+  "license": "MIT",
   "keywords": [
     "Laravel",
     "Ip"
@@ -15,24 +15,18 @@
   ],
   "homepage": "https://github.com/haakco/laravel-ip",
   "require": {
-    "geoip2/geoip2": ">=v2.12",
+    "php": ">=8.0",
+    "geoip2/geoip2": ">=v2.13",
     "haakco/laravel-postgres-helper": "@dev",
-    "illuminate/support": "~7 || ~8 || ~9 || ~10 || ~11 || ~12",
+    "illuminate/support": "~10 || ~11 || ~12",
     "torann/geoip": ">=3.0"
   },
   "require-dev": {
-    "doctrine/dbal": ">=3.3",
-    "ergebnis/composer-normalize": ">=2.15",
-    "orchestra/testbench": "~5 || ~6 || ~7 || ~8 || ~9 || ~10 || ~11 || ~12",
-    "phpunit/phpunit": ">=9.5",
-    "roave/security-advisories": "dev-latest",
-    "symplify/easy-coding-standard": ">=10.2"
-  },
-  "repositories": {
-    "haakco/laravel-postgres-helper": {
-      "type": "vcs",
-      "url": "git@github.com:haakco/laravel-postgres-helper.git"
-    }
+    "ergebnis/composer-normalize": ">=2.30",
+    "laravel/pint": "^1.10",
+    "orchestra/testbench": "~8 || ~9 || ~10 || ~11 || ~12",
+    "phpunit/phpunit": ">=10.0",
+    "roave/security-advisories": "dev-latest"
   },
   "autoload": {
     "psr-4": {
@@ -50,6 +44,15 @@
     }
   },
   "extra": {
+    "hooks": {
+      "post-merge": "composer install",
+      "pre-commit": [
+        "echo committing as $(git config user.name)",
+        "./vendor/bin/pint",
+        "composer fix-code-format"
+      ],
+      "pre-push": []
+    },
     "laravel": {
       "aliases": {
         "Ip": "HaakCo\\Ip\\Facades\\Ip"
@@ -67,17 +70,11 @@
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "composer normalize"
     ],
-    "phpcs": [
-      "@php vendor/bin/ecs check --no-interaction",
-      "@php vendor/bin/ecs check --fix --no-interaction"
+    "fix-code-format": [
+      "./vendor/bin/pint || true"
     ],
-    "phpcs-check": [
-      "@php vendor/bin/ecs check --no-interaction"
-    ],
-    "phpcs-no-cache": [
-      "@php vendor/bin/ecs check --clear-cache --no-interaction",
-      "@php vendor/bin/ecs check --no-interaction",
-      "@php vendor/bin/ecs check --fix --no-interaction"
+    "lint": [
+      "./vendor/bin/pint"
     ]
   }
 }
