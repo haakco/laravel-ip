@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property int $netmask
  * @property IpType $ipType
+ *
  * @mixin Eloquent
  */
 class Ip extends BaseModel

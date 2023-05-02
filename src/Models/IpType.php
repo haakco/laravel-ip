@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $family
  * @property string $name
  * @property Collection|Ip[] $ips
+ *
  * @mixin Eloquent
  */
 class IpType extends BaseModel

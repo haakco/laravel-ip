@@ -17,6 +17,7 @@ use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $name
+ *
  * @mixin Eloquent
  */
 class MacAddress extends BaseModel
@@ -24,6 +25,7 @@ class MacAddress extends BaseModel
     protected $casts = [
         'name' => 'macaddr',
     ];
+
     protected $fillable = ['name'];
 
     public function getTable()

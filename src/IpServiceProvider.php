@@ -15,7 +15,7 @@ class IpServiceProvider extends ServiceProvider
     {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'haakco');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'haakco');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Publishing is only necessary when using the CLI.
@@ -31,11 +31,11 @@ class IpServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__ . '/../config/ip.php' => config_path('ip.php'),
+            __DIR__.'/../config/ip.php' => config_path('ip.php'),
         ], 'ip.config');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations'),
+            __DIR__.'/../database/migrations/' => database_path('migrations'),
         ], 'ip.migrations');
 
         // Publishing the views.
@@ -62,7 +62,7 @@ class IpServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/ip.php', 'ip');
+        $this->mergeConfigFrom(__DIR__.'/../config/ip.php', 'ip');
 
         // Register the service the package provides.
         $this->app->singleton('ip', function ($app) {
@@ -72,8 +72,6 @@ class IpServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
-     *
-     * @return array
      */
     public function provides(): array
     {
