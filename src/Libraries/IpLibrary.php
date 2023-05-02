@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 namespace HaakCo\Ip\Libraries;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use function array_key_exists;
-use Cache;
-use DB;
 use Exception;
 use HaakCo\Ip\Models\Ip;
 use Illuminate\Http\Request;

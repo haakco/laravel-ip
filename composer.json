@@ -16,15 +16,14 @@
   "homepage": "https://github.com/haakco/laravel-ip",
   "require": {
     "php": ">=8.0",
-    "geoip2/geoip2": ">=v2.13",
-    "haakco/laravel-postgres-helper": "@dev",
-    "illuminate/support": "~10 || ~11 || ~12",
+    "haakco/laravel-postgres-helper": "^1.0",
+    "illuminate/support": "~8 || ~9 || ~10 || ~11 || ~12",
     "torann/geoip": ">=3.0"
   },
   "require-dev": {
+    "brainmaestro/composer-git-hooks": ">=2.8",
     "ergebnis/composer-normalize": ">=2.30",
     "laravel/pint": "^1.10",
-    "orchestra/testbench": "~8 || ~9 || ~10 || ~11 || ~12",
     "phpunit/phpunit": ">=10.0",
     "roave/security-advisories": "dev-latest"
   },
@@ -64,12 +63,15 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postInstall"
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "cghooks add --ignore-lock"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "cghooks update",
       "composer normalize"
     ],
+    "cghooks": "vendor/bin/cghooks",
     "fix-code-format": [
       "./vendor/bin/pint || true"
     ],
