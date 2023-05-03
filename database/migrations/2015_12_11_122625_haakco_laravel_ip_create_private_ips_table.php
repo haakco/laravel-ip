@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class HaakcoLaravelIpCreateIpsTable extends Migration
+class HaakcoLaravelIpCreatePrivateIpsTable extends Migration
 {
     /**
      * Run the migrations.
