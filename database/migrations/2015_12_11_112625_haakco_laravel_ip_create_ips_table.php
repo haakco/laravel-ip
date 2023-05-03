@@ -30,13 +30,13 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
                     ->unique();
                 $table->string('name')
                     ->unique();
-            }
+            },
         );
 
         DB::insert(
             "INSERT INTO ip_types (id, family, name) VALUES
 (4, 4, 'ipv4'),
-(6, 6, 'ipv6')"
+(6, 6, 'ipv6')",
         );
 
         Schema::create(
@@ -60,7 +60,7 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
                 $table->unsignedBigInteger('netmask')
                     ->index()
                     ->nullable();
-            }
+            },
         );
 
         Schema::create(
@@ -75,7 +75,7 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
                     ->index();
                 $table->macAddress('name')
                     ->unique();
-            }
+            },
         );
 
         PgHelperLibrary::addMissingUpdatedAtTriggers();
@@ -88,8 +88,8 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mac_addresses');
-        Schema::dropIfExists('ips');
-        Schema::dropIfExists('ip_types');
+        Schema::dropIfExists(config('ip.tables.mac_addresses'));
+        Schema::dropIfExists(config('ip.tables.ips'));
+        Schema::dropIfExists(config('ip.tables.ip_types'));
     }
 }

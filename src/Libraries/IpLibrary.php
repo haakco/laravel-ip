@@ -6,14 +6,14 @@ declare(strict_types=1);
 
 namespace HaakCo\Ip\Libraries;
 
-use function array_key_exists;
 use Exception;
 use HaakCo\Ip\Models\Ip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Torann\GeoIP\GeoIP;
 use Torann\GeoIP\Location;
+
+use function array_key_exists;
 
 class IpLibrary
 {
@@ -23,64 +23,48 @@ class IpLibrary
     public static function getIp(string $ipName): Ip
     {
         return cache()->remember(
-            'ip_lookup_'.$ipName,
+            'ip_lookup_' . $ipName,
             config('custom.cache_short_seconds'),
             static function () use ($ipName): Ip {
                 $ip =
-                    Cache::lock('lock_ip_lookup_'.$ipName, 2)
+                    Cache::lock('lock_ip_lookup_' . $ipName, 2)
                         ->block(2, function () use ($ipName): Ip {
                             return Ip::firstOrCreate([
                                 'name' => $ipName,
-                            ], [
-                                'ip_type_id' => self::isIpV4($ipName) ? 4 : 6,
-                                'is_public' => ! (self::isIpV4($ipName) && ! self::isPublicIpV4($ipName)),
                             ]);
                         });
-
-                if ($ip->wasRecentlyCreated) {
-                    $sql = 'UPDATE
-    ips
-SET
-    netmask = masklen(name)
-WHERE
-     is_public IS NULL
-  OR netmask IS NULL';
-
-                    DB::update($sql);
-                }
-
                 return $ip;
-            }
+            },
         );
     }
 
     public static function isIpV4(string $ipAddress): bool
     {
-        return (bool) filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+        return (bool)filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
     }
 
     public static function isPublicIpV4(string $ipAddress): bool
     {
-        return (bool) filter_var(
+        return (bool)filter_var(
             $ipAddress,
             FILTER_VALIDATE_IP,
-            FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+            FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE,
         );
     }
 
     public static function isIpV6(string $ipAddress): bool
     {
-        return (bool) filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+        return (bool)filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
     }
 
     public static function isIp(string $ipAddress): bool
     {
-        return (bool) filter_var($ipAddress, FILTER_VALIDATE_IP);
+        return (bool)filter_var($ipAddress, FILTER_VALIDATE_IP);
     }
 
     public function isIpPublic(string $ipAddress): bool
     {
-        return (bool) filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+        return (bool)filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
     }
 
     /**
@@ -116,10 +100,10 @@ WHERE
             $mainIp = $request->getClientIp();
         }
 
-        if (array_key_exists(0, $forwardedIpArray) && ! empty($forwardedIpArray[0])) {
-            $mainIp = trim((string) $forwardedIpArray[0]);
+        if (array_key_exists(0, $forwardedIpArray) && !empty($forwardedIpArray[0])) {
+            $mainIp = trim((string)$forwardedIpArray[0]);
         }
 
-        return trim((string) $mainIp);
+        return trim((string)$mainIp);
     }
 }
