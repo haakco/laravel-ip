@@ -52,7 +52,7 @@ VALUES
         );
 
         DB::statement(
-            'CREATE OR REPLACE FUNCTION is_private_ip(
+            'CREATE OR REPLACE FUNCTION is_private_ip'.config('ip.tables.function_suffix').' (
   ip INET
 )
   RETURNS BOOLEAN
@@ -75,7 +75,7 @@ $$
         );
 
         DB::statement(
-            'CREATE OR REPLACE FUNCTION add_inet_family_information_'.config('ip.tables.ips').'(
+            'CREATE OR REPLACE FUNCTION add_inet_family_information'.config('ip.tables.function_suffix').' (
 )
   RETURNS TRIGGER
 AS
@@ -97,7 +97,7 @@ CREATE TRIGGER insert_ip_information_'.config('ip.tables.ips').'
   BEFORE INSERT
   ON '.config('ip.tables.ips').'
   FOR EACH ROW
-EXECUTE PROCEDURE add_inet_family_information();',
+EXECUTE PROCEDURE add_inet_family_information'.config('ip.tables.function_suffix').'();',
         );
 
         DB::unprepared(
@@ -107,7 +107,7 @@ CREATE TRIGGER update_ip_information_'.config('ip.tables.ips').'
   BEFORE UPDATE
   ON '.config('ip.tables.ips').'
   FOR EACH ROW
-EXECUTE PROCEDURE add_inet_family_information();',
+EXECUTE PROCEDURE add_inet_family_information'.config('ip.tables.function_suffix').'();',
         );
     }
 
@@ -120,7 +120,8 @@ EXECUTE PROCEDURE add_inet_family_information();',
     {
         DB::unprepared('DROP TRIGGER IF EXISTS update_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';');
         DB::unprepared('DROP TRIGGER IF EXISTS insert_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';');
-        DB::unprepared('DROP FUNCTION IF EXISTS add_inet_family_information');
+        DB::unprepared('DROP FUNCTION IF EXISTS add_inet_family_information'.config('ip.tables.function_suffix').';');
+        DB::unprepared('DROP FUNCTION IF EXISTS is_private_ip'.config('ip.tables.function_suffix').';');
         Schema::dropIfExists(config('ip.tables.ip_private_ranges'));
     }
 }
