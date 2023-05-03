@@ -27,7 +27,7 @@ class HaakcoLaravelIpCreatePrivateIpsTable extends Migration
                     ->index();
                 $table->unsignedBigInteger('family')
                     ->index();
-                $table->string('name')
+                $table->ipAddress('name')
                     ->unique();
                 $table->text('description')
                     ->default('');
@@ -67,7 +67,7 @@ BEGIN
   FROM
     ip_private_ranges ipr
   WHERE
-    ipr.range >>= ip;
+    ipr.name >>= ip;
   RETURN match_count > 0;
 END;
 $$
