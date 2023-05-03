@@ -36,8 +36,8 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
         PgHelperLibrary::addMissingUpdatedAtTriggers();
 
         DB::insert(
-            "INSERT INTO
-" . config('ip.tables.ip_private_ranges') . "
+            'INSERT INTO
+'.config('ip.tables.ip_private_ranges')."
     (family, name, description)
 VALUES
     (4, '10.0.0.0/8', 'Private IPv4 addresses'),
@@ -75,7 +75,7 @@ $$
         );
 
         DB::statement(
-            'CREATE OR REPLACE FUNCTION add_inet_family_information_' . config('ip.tables.ips') . '(
+            'CREATE OR REPLACE FUNCTION add_inet_family_information_'.config('ip.tables.ips').'(
 )
   RETURNS TRIGGER
 AS
@@ -92,20 +92,20 @@ $$
 
         DB::unprepared(
             '
-DROP TRIGGER IF EXISTS insert_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';
-CREATE TRIGGER insert_ip_information_' . config('ip.tables.ips') . '
+DROP TRIGGER IF EXISTS insert_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';
+CREATE TRIGGER insert_ip_information_'.config('ip.tables.ips').'
   BEFORE INSERT
-  ON ' . config('ip.tables.ips') . '
+  ON '.config('ip.tables.ips').'
   FOR EACH ROW
 EXECUTE PROCEDURE add_inet_family_information();',
         );
 
         DB::unprepared(
             '
-DROP TRIGGER IF EXISTS update_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';
-CREATE TRIGGER update_ip_information_' . config('ip.tables.ips') . '
+DROP TRIGGER IF EXISTS update_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';
+CREATE TRIGGER update_ip_information_'.config('ip.tables.ips').'
   BEFORE UPDATE
-  ON ' . config('ip.tables.ips') . '
+  ON '.config('ip.tables.ips').'
   FOR EACH ROW
 EXECUTE PROCEDURE add_inet_family_information();',
         );
@@ -118,8 +118,8 @@ EXECUTE PROCEDURE add_inet_family_information();',
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS update_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';');
-        DB::unprepared('DROP TRIGGER IF EXISTS insert_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';');
+        DB::unprepared('DROP TRIGGER IF EXISTS update_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';');
+        DB::unprepared('DROP TRIGGER IF EXISTS insert_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';');
         DB::unprepared('DROP FUNCTION IF EXISTS add_inet_family_information');
         Schema::dropIfExists(config('ip.tables.ip_private_ranges'));
     }
