@@ -83,7 +83,7 @@ $$
 BEGIN
   new.ip_type_id := family(new.name);
   new.netmask := masklen(new.name);
-  new.is_public := !is_private_ip(new.name);
+  new.is_public :=  not is_private_ip(new.name);
   RETURN new;
 END;
 $$
