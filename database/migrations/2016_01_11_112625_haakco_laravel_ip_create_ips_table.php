@@ -52,8 +52,6 @@ VALUES
     (6, '::1', 'Loopback');",
         );
 
-
-
         DB::statement('CREATE OR REPLACE FUNCTION is_private_ip(
   ip INET
 )
@@ -95,8 +93,7 @@ CREATE TRIGGER insert_ip_information_'.config('ip.tables.ips').'
   BEFORE INSERT
   ON '.config('ip.tables.ips').'
   FOR EACH ROW
-EXECUTE PROCEDURE add_inet_family_information();'
-            ,
+EXECUTE PROCEDURE add_inet_family_information();',
         );
 
         DB::unprepared('
@@ -105,8 +102,7 @@ CREATE TRIGGER update_ip_information_'.config('ip.tables.ips').'
   BEFORE UPDATE
   ON '.config('ip.tables.ips').'
   FOR EACH ROW
-EXECUTE PROCEDURE add_inet_family_information();'
-            ,
+EXECUTE PROCEDURE add_inet_family_information();',
         );
     }
 
