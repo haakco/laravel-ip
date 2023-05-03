@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class HaakcoLaravelIpCreateIpsInfoAdd extends Migration
+class HaakcoLaravelIpCreateIpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,8 +18,7 @@ class HaakcoLaravelIpCreateIpsInfoAdd extends Migration
         Schema::create(
             config('ip.tables.ip_private_ranges'),
             function (Blueprint $table) {
-                $table->unsignedBigInteger('id')
-                    ->primary();
+                $table->id();
                 $table->timestampTz('created_at')
                     ->default(DB::raw('CURRENT_TIMESTAMP'))
                     ->index();
@@ -27,7 +26,7 @@ class HaakcoLaravelIpCreateIpsInfoAdd extends Migration
                     ->default(DB::raw('CURRENT_TIMESTAMP'))
                     ->index();
                 $table->unsignedBigInteger('family')
-                    ->unique();
+                    ->index();
                 $table->string('name')
                     ->unique();
                 $table->text('description')
@@ -38,8 +37,8 @@ class HaakcoLaravelIpCreateIpsInfoAdd extends Migration
 
         DB::insert(
             "INSERT INTO
-ip_private_ranges
-    (family, name)
+" . config('ip.tables.ip_private_ranges') . "
+    (family, name, description)
 VALUES
     (4, '10.0.0.0/8', 'Private IPv4 addresses'),
     (4, '172.16.0.0/12', 'Private IPv4 addresses'),
@@ -52,7 +51,8 @@ VALUES
     (6, '::1', 'Loopback');",
         );
 
-        DB::statement('CREATE OR REPLACE FUNCTION is_private_ip(
+        DB::statement(
+            'CREATE OR REPLACE FUNCTION is_private_ip(
   ip INET
 )
   RETURNS BOOLEAN
@@ -71,9 +71,11 @@ BEGIN
   RETURN match_count > 0;
 END;
 $$
-  LANGUAGE plpgsql;');
+  LANGUAGE plpgsql;',
+        );
 
-        DB::statement('CREATE OR REPLACE FUNCTION add_inet_family_information(
+        DB::statement(
+            'CREATE OR REPLACE FUNCTION add_inet_family_information_' . config('ip.tables.ips') . '(
 )
   RETURNS TRIGGER
 AS
@@ -85,22 +87,25 @@ BEGIN
   RETURN new;
 END;
 $$
-  LANGUAGE plpgsql;');
+  LANGUAGE plpgsql;',
+        );
 
-        DB::unprepared('
-DROP TRIGGER IF EXISTS insert_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';
-CREATE TRIGGER insert_ip_information_'.config('ip.tables.ips').'
+        DB::unprepared(
+            '
+DROP TRIGGER IF EXISTS insert_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';
+CREATE TRIGGER insert_ip_information_' . config('ip.tables.ips') . '
   BEFORE INSERT
-  ON '.config('ip.tables.ips').'
+  ON ' . config('ip.tables.ips') . '
   FOR EACH ROW
 EXECUTE PROCEDURE add_inet_family_information();',
         );
 
-        DB::unprepared('
-DROP TRIGGER IF EXISTS update_ip_information_'.config('ip.tables.ips').' ON '.config('ip.tables.ips').';
-CREATE TRIGGER update_ip_information_'.config('ip.tables.ips').'
+        DB::unprepared(
+            '
+DROP TRIGGER IF EXISTS update_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';
+CREATE TRIGGER update_ip_information_' . config('ip.tables.ips') . '
   BEFORE UPDATE
-  ON '.config('ip.tables.ips').'
+  ON ' . config('ip.tables.ips') . '
   FOR EACH ROW
 EXECUTE PROCEDURE add_inet_family_information();',
         );
@@ -113,6 +118,9 @@ EXECUTE PROCEDURE add_inet_family_information();',
      */
     public function down()
     {
+        DB::unprepared('DROP TRIGGER IF EXISTS update_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';');
+        DB::unprepared('DROP TRIGGER IF EXISTS insert_ip_information_' . config('ip.tables.ips') . ' ON ' . config('ip.tables.ips') . ';');
+        DB::unprepared('DROP FUNCTION IF EXISTS add_inet_family_information');
         Schema::dropIfExists(config('ip.tables.ip_private_ranges'));
     }
 }
