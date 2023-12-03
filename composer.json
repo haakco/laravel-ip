@@ -17,7 +17,7 @@
   "require": {
     "php": ">=8.0",
     "haakco/laravel-postgres-helper": "^1.0",
-    "illuminate/support": "~8 || ~9 || ~10 || ~11 || ~12",
+    "illuminate/support": "^8 || ^9 || ^10 || ^11 || ^12",
     "torann/geoip": ">=3.0"
   },
   "require-dev": {
