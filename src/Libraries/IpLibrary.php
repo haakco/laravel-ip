@@ -6,13 +6,14 @@ declare(strict_types=1);
 
 namespace HaakCo\Ip\Libraries;
 
-use function array_key_exists;
 use Exception;
 use HaakCo\Ip\Models\Ip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Torann\GeoIP\GeoIP;
 use Torann\GeoIP\Location;
+
+use function array_key_exists;
 
 class IpLibrary
 {
@@ -76,9 +77,9 @@ class IpLibrary
             ->toArray();
     }
 
-    public static function getGeoIp(?string $ipAddress = null): GeoIP|Location
+    public static function getGeoIp(string $ipAddress = null): GeoIP|Location
     {
-        if (null === $ipAddress) {
+        if ($ipAddress === null) {
             $ipAddress = self::getMyIp();
         }
 
