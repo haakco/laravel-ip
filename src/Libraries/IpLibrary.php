@@ -77,7 +77,7 @@ class IpLibrary
             ->toArray();
     }
 
-    public static function getGeoIp(string $ipAddress = null): GeoIP|Location
+    public static function getGeoIp(?string $ipAddress = null): GeoIP|Location
     {
         if ($ipAddress === null) {
             $ipAddress = self::getMyIp();

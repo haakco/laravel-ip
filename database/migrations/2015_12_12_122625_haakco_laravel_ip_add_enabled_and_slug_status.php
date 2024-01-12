@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table(config('ip.tables.ip_types'), function (Blueprint $table) {
             $table->boolean('enabled')
@@ -35,10 +33,8 @@ return new class extends Migration {
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         DB::delete("DELETE FROM ip_types WHERE id = 0 and slug='unknown' and name = 'Unknown';");
         Schema::table(config('ip.tables.ip_types'), function (Blueprint $table) {
@@ -46,4 +42,4 @@ return new class extends Migration {
             $table->dropColumn('slug');
         });
     }
-}
+};
