@@ -66,7 +66,7 @@ class IpServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->singleton('ip', function ($app) {
-            return new Ip();
+            return new Ip;
         });
     }
 

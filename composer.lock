@@ -710,16 +710,16 @@
         },
         {
             "name": "haakco/laravel-postgres-helper",
-            "version": "v3.0.8",
+            "version": "v3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/haakco/laravel-postgres-helper.git",
-                "reference": "2e31cc263727cfc95180dd5ab02828c9f05609d9"
+                "reference": "2885c9dc1c9eece8f62f7c7908339841295f88ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/haakco/laravel-postgres-helper/zipball/2e31cc263727cfc95180dd5ab02828c9f05609d9",
-                "reference": "2e31cc263727cfc95180dd5ab02828c9f05609d9",
+                "url": "https://api.github.com/repos/haakco/laravel-postgres-helper/zipball/2885c9dc1c9eece8f62f7c7908339841295f88ed",
+                "reference": "2885c9dc1c9eece8f62f7c7908339841295f88ed",
                 "shasum": ""
             },
             "require": {
@@ -778,9 +778,9 @@
             ],
             "support": {
                 "issues": "https://github.com/haakco/laravel-postgres-helper/issues",
-                "source": "https://github.com/haakco/laravel-postgres-helper/tree/v3.0.8"
+                "source": "https://github.com/haakco/laravel-postgres-helper/tree/v3.0.10"
             },
-            "time": "2024-02-05T18:03:48+00:00"
+            "time": "2024-09-18T16:14:27+00:00"
         },
         {
             "name": "illuminate/bus",
