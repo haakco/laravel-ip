@@ -710,7 +710,7 @@
         },
         {
             "name": "haakco/laravel-postgres-helper",
-            "version": "v3.0.11",
+            "version": "v3.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/haakco/laravel-postgres-helper.git",
@@ -778,7 +778,7 @@
             ],
             "support": {
                 "issues": "https://github.com/haakco/laravel-postgres-helper/issues",
-                "source": "https://github.com/haakco/laravel-postgres-helper/tree/v3.0.11"
+                "source": "https://github.com/haakco/laravel-postgres-helper/tree/v3.0.12"
             },
             "time": "2024-09-18T16:22:32+00:00"
         },
