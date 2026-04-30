@@ -15,11 +15,11 @@
   ],
   "homepage": "https://github.com/haakco/laravel-ip",
   "require": {
-    "php": ">=8",
+    "php": "^8.4 || ^8.5",
     "haakco/laravel-postgres-helper": ">=3",
-    "illuminate/database": ">=8",
-    "illuminate/http": ">=8",
-    "illuminate/support": ">=8",
+    "illuminate/database": "^11.0 || ^12.0 || ^13.0",
+    "illuminate/http": "^11.0 || ^12.0 || ^13.0",
+    "illuminate/support": "^11.0 || ^12.0 || ^13.0",
     "torann/geoip": ">=3"
   },
   "require-dev": {
@@ -28,7 +28,7 @@
     "doctrine/dbal": ">=3",
     "ergebnis/composer-normalize": ">=2",
     "laravel/pint": ">=1",
-    "phpunit/phpunit": ">=10",
+    "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
     "roave/security-advisories": "dev-latest"
   },
   "autoload": {
