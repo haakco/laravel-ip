@@ -1,6 +1,6 @@
 <?php
 
-use HaakCo\PostgresHelper\Libraries\PgHelperLibrary;
+use HaakCo\Ip\Support\PostgresMaintenance;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +33,7 @@ class HaakcoLaravelIpCreatePrivateIpsTable extends Migration
                     ->default('');
             },
         );
-        PgHelperLibrary::addMissingUpdatedAtTriggers();
+        PostgresMaintenance::addMissingUpdatedAtTriggers();
 
         DB::insert(
             'INSERT INTO
