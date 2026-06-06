@@ -33,7 +33,9 @@ class HaakcoLaravelIpCreatePrivateIpsTable extends Migration
                     ->default('');
             },
         );
-        PostgresMaintenance::addMissingUpdatedAtTriggers();
+        PostgresMaintenance::addMissingUpdatedAtTriggers([
+            config('ip.tables.ip_private_ranges'),
+        ]);
 
         DB::insert(
             'INSERT INTO

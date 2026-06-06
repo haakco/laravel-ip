@@ -13,8 +13,15 @@ final class PostgresMaintenance
         // Static utility only.
     }
 
-    public static function addMissingUpdatedAtTriggers(): void
+    /**
+     * @param  list<string>  $tableNames
+     */
+    public static function addMissingUpdatedAtTriggers(array $tableNames): void
     {
+        if ($tableNames === []) {
+            return;
+        }
+
         DB::unprepared(<<<'SQL'
             CREATE OR REPLACE FUNCTION public.update_updated_at_column()
             RETURNS trigger
@@ -27,13 +34,16 @@ final class PostgresMaintenance
             $$;
         SQL);
 
-        $tables = DB::select(<<<'SQL'
+        $placeholders = implode(', ', array_fill(0, count($tableNames), '?'));
+
+        $tables = DB::select(<<<SQL
             SELECT table_schema, table_name
             FROM information_schema.columns
             WHERE table_schema = 'public'
               AND column_name = 'updated_at'
+              AND table_name IN ({$placeholders})
             GROUP BY table_schema, table_name
-        SQL);
+        SQL, $tableNames);
 
         foreach ($tables as $table) {
             $schemaName = self::readStringProperty($table, 'table_schema');

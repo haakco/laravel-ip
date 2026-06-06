@@ -78,7 +78,11 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
             },
         );
 
-        PostgresMaintenance::addMissingUpdatedAtTriggers();
+        PostgresMaintenance::addMissingUpdatedAtTriggers([
+            config('ip.tables.ip_types'),
+            config('ip.tables.ips'),
+            config('ip.tables.mac_addresses'),
+        ]);
     }
 
     /**
