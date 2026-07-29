@@ -1,6 +1,6 @@
 <?php
 
-use HaakCo\PostgresHelper\Libraries\PgHelperLibrary;
+use HaakCo\Ip\Support\PostgresMaintenance;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -78,7 +78,11 @@ class HaakcoLaravelIpCreateIpsTable extends Migration
             },
         );
 
-        PgHelperLibrary::addMissingUpdatedAtTriggers();
+        PostgresMaintenance::addMissingUpdatedAtTriggers([
+            config('ip.tables.ip_types'),
+            config('ip.tables.ips'),
+            config('ip.tables.mac_addresses'),
+        ]);
     }
 
     /**

@@ -8,7 +8,6 @@ namespace HaakCo\Ip\Models;
 
 use Carbon\Carbon;
 use Eloquent;
-use HaakCo\PostgresHelper\Models\BaseModels\BaseModel;
 
 /**
  * Class MacAddress.
